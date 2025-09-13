@@ -1,0 +1,9 @@
+ {
+  "functions": {
+    "api/generate-profile.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "buildCommand": "echo 'No build needed'",
+  "outputDirectory": "."
+}
