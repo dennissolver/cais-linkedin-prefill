@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Grey‑Hair Experts | Corporate AI Solutions</title>
+  <meta name="description" content="Meet the seasoned executives and domain specialists behind Corporate AI Solutions. Grey‑hair wisdom powering pragmatic AI adoption." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b1020;--bg2:#0f172a;--card:#111827;--muted:#94a3b8;--text:#e5e7eb;--headline:#f8fafc;--brand:#60a5fa;--brand2:#22d3ee;--accent:#a78bfa;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.35);--grid:1200px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 600px at 20% -10%, rgba(96,165,250,.15), transparent),radial-gradient(900px 500px at 110% 10%, rgba(34,211,238,.12), transparent),linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:var(--brand)}
+    header{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:linear-gradient(180deg,rgba(11,16,32,.85),rgba(11,16,32,.35));border-bottom:1px solid rgba(148,163,184,.1)}
+    .nav{max-width:var(--grid);margin:auto;padding:14px 20px;display:flex;align-items:center;gap:14px}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--headline);font-weight:800}
+    .logo-mark{width:28px;height:28px;border-radius:9px;background:conic-gradient(from 210deg,var(--brand),var(--brand2),var(--accent),var(--brand));box-shadow:0 8px 24px rgba(96,165,250,.35)}
+    .spacer{flex:1}
+    .nav a{color:var(--text);text-decoration:none;font-weight:600;opacity:.9}
+    .nav a:hover{opacity:1}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:700;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#020617;box-shadow:0 10px 24px rgba(34,211,238,.25);cursor:pointer;border:none;transition:all 0.2s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(148,163,184,.25);box-shadow:none}
+    .btn.ai{background:linear-gradient(135deg,var(--accent),#ec4899);color:white;box-shadow:0 10px 24px rgba(167,139,250,.25)}
+
+    .wrap{max-width:var(--grid);margin:auto;padding:0 20px}
+    .hero{padding:64px 0 24px}
+    h1{margin:0 0 10px;font-size:clamp(32px,6vw,52px);line-height:1.05;color:var(--headline)}
+    .lead{color:var(--muted);font-size:clamp(16px,2.2vw,20px)}
+
+    section{padding:38px 0}
+    h2{margin:0 0 10px;font-size:clamp(24px,4vw,34px);color:var(--headline)}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:730px){.grid{grid-template-columns:1fr}}
+
+    .card{display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(17,24,39,.6));border:1px solid rgba(148,163,184,.12);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .head{display:flex;gap:14px;padding:16px}
+    .avatar{flex:0 0 84px;width:84px;height:84px;border-radius:12px;background:#0a0f22;border:1px solid rgba(148,163,184,.15);object-fit:cover}
+    .name{margin:2px 0 2px;color:var(--headline);font-size:18px;font-weight:800}
+    .title{margin:0;color:#cbd5e1;font-size:13px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
+    .tag{font-size:12px;border:1px solid rgba(148,163,184,.25);color:var(--text);padding:4px 8px;border-radius:999px;background:rgba(2,6,23,.35)}
+    .bio{padding:0 16px 16px;color:#94a3b8;font-size:14px}
+
+    .links{display:flex;gap:10px;padding:0 16px 16px}
+    .link{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;border:1px solid rgba(148,163,184,.25);text-decoration:none;color:var(--text);font-weight:600}
+    .link:hover{border-color:rgba(96,165,250,.6)}
+
+    .filterbar{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0}
+    .filterbar input{width:280px;max-width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)}
+
+    footer{padding:28px 0 48px;border-top:1px solid rgba(148,163,184,.15);background:linear-gradient(180deg,rgba(2,6,23,.35),rgba(2,6,23,.65))}
+    .foot{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media(max-width:980px){.foot{grid-template-columns:1fr}}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Admin/self-serve panel */
+    .panel{background:linear-gradient(180deg,rgba(17,24,39,.85),rgba(17,24,39,.6));border:1px solid rgba(148,163,184,.18);border-radius:16px;box-shadow:var(--shadow);padding:16px}
+    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .input{width:280px;max-width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text);resize:vertical}
+    .drop{border:2px dashed rgba(148,163,184,.35);border-radius:12px;padding:16px;text-align:center;background:rgba(2,6,23,.35)}
+    .admin-tools{display:none;margin-top:6px}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid rgba(148,163,184,.25)}
+    .danger{color:#fecaca;border-color:#fecaca33}
+
+    /* AI & enhanced styles */
+    .explanation{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:12px;padding:16px;margin:16px 0}
+    .ai-section{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:16px;margin:16px 0}
+    .feature-highlight{background:rgba(34,211,238,.1);border-left:4px solid var(--brand2);padding:16px;margin:16px 0;border-radius:0 8px 8px 0}
+    .loading{display:none;align-items:center;gap:8px;color:var(--accent)}
+    .spinner{width:16px;height:16px;border:2px solid rgba(167,139,250,.3);border-top:2px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+    @keyframes spin{0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)}}
+
+    /* Tabs */
+    .tabs{display:flex;gap:4px;margin-bottom:20px;background:rgba(17,24,39,.5);padding:4px;border-radius:12px}
+    .tab{padding:10px 16px;border-radius:8px;background:transparent;border:none;color:var(--muted);cursor:pointer;font-weight:500;transition:all 0.2s}
+    .tab.active{background:var(--brand);color:#020617}
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+
+    /* Image management */
+    .upload-zone{border:2px dashed rgba(148,163,184,.35);border-radius:12px;padding:32px;text-align:center;cursor:pointer;margin:16px 0;transition:all 0.3s}
+    .upload-zone:hover{border-color:var(--brand);background:rgba(96,165,250,.1)}
+    .upload-zone.dragover{border-color:var(--brand2);background:rgba(34,211,238,.1)}
+    .preview-image{width:120px;height:120px;border-radius:12px;object-fit:cover;border:2px solid rgba(148,163,184,.25)}
+    .avatar-generator{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:16px 0}
+    .avatar-option{width:80px;height:80px;border-radius:12px;cursor:pointer;border:2px solid transparent;transition:all 0.2s}
+    .avatar-option:hover{border-color:var(--brand)}
+    .avatar-option.selected{border-color:var(--brand2);box-shadow:0 0 0 2px rgba(34,211,238,.3)}
+    .hidden{display:none!important}
+
+    /* Form enhancements */
+    .form-group{margin:16px 0}
+    .form-group label{display:block;margin-bottom:8px;font-weight:600;color:var(--headline)}
+    .help-text{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+    .wide-input{width:100%!important}
+    .preview-card{background:rgba(17,24,39,.7);border:1px solid rgba(148,163,184,.15);border-radius:12px;padding:20px;margin-top:20px}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="/" aria-label="Corporate AI Solutions home">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>Corporate <span style="opacity:.8">AI</span> Solutions</span>
+      </a>
+      <div class="spacer"></div>
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/join/">Join Us</a>
+      <a href="/products/">Products</a>
+      <a href="https://corporateaisolutions.com/offerings/">Offerings</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact/" class="btn secondary">Contact</a>
+      <a href="https://calendly.com/mcmdennis/15min" class="btn" target="_blank" rel="noopener">Get Started</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="wrap hero">
+      <h1>Meet Our Grey‑Hair Experts</h1>
+      <p class="lead">Seasoned executives and domain specialists who bring the judgment, networks, and context that make AI succeed in the real world.</p>
+      <div class="filterbar">
+        <input id="search" type="search" placeholder="Search by name, title, or expertise…" aria-label="Search experts" />
+      </div>
+    </section>
+
+    <!-- Create Card / Admin & Invite Panel -->
+    <section class="wrap" id="create-panel" style="display:none; margin-top:-10px;">
+      <div class="panel">
+        <div class="row" style="justify-content:space-between;">
+          <h2 style="margin:0;">Create Expert Card</h2>
+          <div class="row">
+            <button id="adminUnlockBtn" class="btn secondary">Admin Unlock</button>
+            <button id="inviteUnlockBtn" class="btn secondary">Have Invite Code?</button>
+          </div>
+        </div>
+
+        <!-- Unlock bars -->
+        <div id="adminUnlockBar" style="display:none;margin-top:12px;" class="row">
+          <input id="adminPass" type="password" placeholder="Enter Admin Passcode" class="input"/>
+          <button id="adminPassGo" class="btn">Unlock</button>
+          <span id="adminStatus" class="small"></span>
+        </div>
+        <div id="inviteUnlockBar" style="display:none;margin-top:12px;" class="row">
+          <input id="inviteCode" type="password" placeholder="Enter Invite Code" class="input"/>
+          <button id="inviteGo" class="btn">Continue</button>
+          <span id="inviteStatus" class="small"></span>
+        </div>
+
+        <!-- LinkedIn Explanation -->
+        <div id="linkedinExplanation" style="display:none;margin-top:16px;" class="explanation">
+          <h3>🤖 AI-Powered Profile Creation</h3>
+          <p><strong>We'd love to automatically import from LinkedIn, but here's why we can't:</strong></p>
+          <ul style="margin:8px 0; padding-left:20px;line-height:1.4;">
+            <li><strong>LinkedIn's Terms of Service</strong> explicitly prohibit automated scraping or data extraction</li>
+            <li><strong>Their API approval process</strong> can take 3-6 months with strict limitations</li>
+            <li><strong>Browser security</strong> prevents safe API key usage in client-side code</li>
+          </ul>
+          <p><strong>Good news:</strong> Our AI assistant will help you create a perfectly tailored expert profile in minutes! ✨</p>
+        </div>
+
+        <!-- Creation Method Tabs -->
+        <div id="creationTabs" style="display:none;margin-top:16px;">
+          <div class="tabs">
+            <button class="tab active" onclick="switchCreationTab('ai')">🤖 AI-Powered</button>
+            <button class="tab" onclick="switchCreationTab('manual')">✏️ Manual Entry</button>
+          </div>
+
+          <!-- AI-Powered Tab -->
+          <div id="ai-creation-tab" class="tab-content active">
+            <div class="ai-section">
+              <h3>🤖 AI Profile Generator</h3>
+              <p>Paste your LinkedIn profile content below, and our AI will create a tailored Corporate AI Solutions expert profile!</p>
+              
+              <div class="feature-highlight">
+                <strong>💡 How it works:</strong> Our AI analyzes your background and reformats it specifically for our corporate AI consulting network, emphasizing relevant experience and expertise.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="linkedinContent">Your LinkedIn Profile Content</label>
+              <textarea 
+                id="linkedinContent" 
+                class="input wide-input" 
+                rows="8" 
+                placeholder="Copy and paste your LinkedIn profile content here...
+
+For best results, include:
+• Your name and current title
+• About/Summary section 
+• Current and recent work experience
+• Key skills and expertise areas
+• Education (if relevant)
+
+You can copy this directly from your LinkedIn profile page."
+              ></textarea>
+              <div class="help-text">
+                <strong>Tip:</strong> Go to your LinkedIn profile, select all the text (Ctrl+A / Cmd+A), and paste it here. The AI will extract what's relevant.
+              </div>
+            </div>
+
+            <div class="row">
+              <button type="button" class="btn ai" onclick="generateAIProfile()" id="generateBtn">
+                ✨ Generate AI Profile
+              </button>
+              <button type="button" class="btn secondary" onclick="openLinkedInHelper()">🔗 Open LinkedIn</button>
+              <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <span>AI is crafting your profile...</span>
+              </div>
+            </div>
+
+            <!-- Generated Profile Form -->
+            <div id="generatedProfileForm" style="display:none;margin-top:20px;">
+              <h3>✨ Your AI-Generated Profile</h3>
+              <p class="small" style="color:var(--muted);">Review and edit the AI-generated content below:</p>
+              
+              <div class="row" style="gap:16px;">
+                <div class="form-group" style="flex:1;">
+                  <label for="ai_name">Name</label>
+                  <input type="text" id="ai_name" class="input wide-input" />
+                </div>
+                <div class="form-group" style="flex:1;">
+                  <label for="ai_title">Title</label>
+                  <input type="text" id="ai_title" class="input wide-input" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="ai_expertise">Expertise Areas</label>
+                <input type="text" id="ai_expertise" class="input wide-input" />
+                <div class="help-text">Comma-separated list of key expertise areas</div>
+              </div>
+              
+              <div class="form-group">
+                <label for="ai_bio">Corporate AI Solutions Bio</label>
+                <textarea id="ai_bio" class="input wide-input" rows="4"></textarea>
+                <div class="help-text">AI-generated bio tailored for our corporate AI consulting network</div>
+              </div>
+              
+              <div class="row" style="gap:16px;">
+                <div class="form-group" style="flex:1;">
+                  <label for="ai_linkedin">LinkedIn URL</label>
+                  <input type="url" id="ai_linkedin" class="input wide-input" />
+                </div>
+                <div class="form-group" style="flex:1;">
+                  <label for="ai_email">Email</label>
+                  <input type="email" id="ai_email" class="input wide-input" />
+                </div>
+              </div>
+
+              <!-- AI Photo Management -->
+              <div class="form-group">
+                <label>Profile Photo</label>
+                <div class="tabs" style="margin-top:8px;">
+                  <button class="tab active" onclick="switchPhotoTab('upload', 'ai')">📁 Upload</button>
+                  <button class="tab" onclick="switchPhotoTab('generate', 'ai')">🎨 Generate</button>
+                  <button class="tab" onclick="switchPhotoTab('url', 'ai')">🔗 URL</button>
+                </div>
+
+                <div id="ai-upload-tab" class="tab-content active">
+                  <div class="upload-zone" onclick="document.getElementById('aiFileInput').click()">
+                    <input type="file" id="aiFileInput" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'ai')">
+                    <div id="ai-upload-content">
+                      <div style="font-size:48px;margin-bottom:16px;">📸</div>
+                      <p>Click to upload or drag image here</p>
+                      <div class="help-text">JPG, PNG, WebP supported</div>
+                    </div>
+                    <div id="ai-image-preview" class="hidden">
+                      <img id="ai-preview-img" class="preview-image" alt="Preview">
+                    </div>
+                  </div>
+                </div>
+
+                <div id="ai-generate-tab" class="tab-content">
+                  <div class="row" style="margin:16px 0;">
+                    <input type="text" placeholder="Your initials (e.g., JD)" id="ai-initials" class="input" style="width:200px;" maxlength="3">
+                    <button class="btn" onclick="generateAvatars('ai')">Generate Avatars</button>
+                  </div>
+                  <div class="avatar-generator" id="ai-avatar-options"></div>
+                </div>
+
+                <div id="ai-url-tab" class="tab-content">
+                  <div class="row" style="margin:16px 0;">
+                    <input type="url" placeholder="https://example.com/photo.jpg" id="ai-photo-url" class="input wide-input">
+                    <button class="btn" onclick="testPhotoUrl('ai')">Test</button>
+                  </div>
+                  <div id="ai-url-preview" class="hidden" style="text-align:center;">
+                    <img id="ai-url-img" class="preview-image" alt="URL Preview">
+                  </div>
+                </div>
+
+                <input type="hidden" id="ai_photo" />
+              </div>
+
+              <div class="row" style="margin-top:20px;">
+                <button type="button" class="btn" onclick="previewAIProfile()">👀 Preview Profile</button>
+                <button type="button" class="btn secondary" onclick="regenerateAIProfile()">🔄 Regenerate</button>
+                <button type="button" class="btn secondary" onclick="switchCreationTab('manual')">✏️ Manual Edit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Manual Entry Tab -->
+          <div id="manual-creation-tab" class="tab-content">
+            <h3>✏️ Manual Profile Creation</h3>
+            <p>Create your profile manually with full control:</p>
+
+            <form id="manualForm">
+              <div class="row" style="gap:16px;">
+                <div class="form-group" style="flex:1;">
+                  <label for="f_name">Name *</label>
+                  <input id="f_name" required class="input wide-input">
+                </div>
+                <div class="form-group" style="flex:1;">
+                  <label for="f_title">Title *</label>
+                  <input id="f_title" required class="input wide-input">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="f_expertise">Expertise Areas</label>
+                <input id="f_expertise" placeholder="Construction, AI Strategy, Digital Transformation" class="input wide-input">
+                <div class="help-text">Comma-separated list of expertise areas</div>
+              </div>
+              
+              <div class="form-group">
+                <label for="f_bio">Professional Bio</label>
+                <textarea id="f_bio" rows="4" class="input wide-input"></textarea>
+              </div>
+              
+              <div class="row" style="gap:16px;">
+                <div class="form-group" style="flex:1;">
+                  <label for="f_linkedin">LinkedIn URL</label>
+                  <input id="f_linkedin" type="url" placeholder="https://www.linkedin.com/in/..." class="input wide-input">
+                </div>
+                <div class="form-group" style="flex:1;">
+                  <label for="f_email">Email</label>
+                  <input id="f_email" type="email" placeholder="name@company.com" class="input wide-input">
+                </div>
+              </div>
+
+              <!-- Manual Photo Management -->
+              <div class="form-group">
+                <label>Profile Photo</label>
+                <div class="tabs" style="margin-top:8px;">
+                  <button class="tab active" onclick="switchPhotoTab('upload', 'manual')">📁 Upload</button>
+                  <button class="tab" onclick="switchPhotoTab('generate', 'manual')">🎨 Generate</button>
+                  <button class="tab" onclick="switchPhotoTab('url', 'manual')">🔗 URL</button>
+                </div>
+
+                <div id="manual-upload-tab" class="tab-content active">
+                  <div class="upload-zone" onclick="document.getElementById('manualFileInput').click()">
+                    <input type="file" id="manualFileInput" accept="image/*" class="hidden" onchange="handleFileSelect(event, 'manual')">
+                    <div id="manual-upload-content">
+                      <div style="font-size:48px;margin-bottom:16px;">📸</div>
+                      <p>Click to upload or drag image here</p>
+                    </div>
+                    <div id="manual-image-preview" class="hidden">
+                      <img id="manual-preview-img" class="preview-image" alt="Preview">
+                    </div>
+                  </div>
+                </div>
+
+                <div id="manual-generate-tab" class="tab-content">
+                  <div class="row" style="margin:16px 0;">
+                    <input type="text" placeholder="Your initials" id="manual-initials" class="input" maxlength="3">
+                    <button class="btn" onclick="generateAvatars('manual')">Generate</button>
+                  </div>
+                  <div class="avatar-generator" id="manual-avatar-options"></div>
+                </div>
+
+                <div id="manual-url-tab" class="tab-content">
+                  <div class="row" style="margin:16px 0;">
+                    <input type="url" placeholder="Photo URL" id="manual-photo-url" class="input wide-input">
+                    <button class="btn" onclick="testPhotoUrl('manual')">Test</button>
+                  </div>
+                  <div id="manual-url-preview" class="hidden" style="text-align:center;">
+                    <img id="manual-url-img" class="preview-image" alt="URL Preview">
+                  </div>
+                </div>
+
+                <input type="hidden" id="f_photo" />
+              </div>
+
+              <div class="row" style="margin-top:20px;">
+                <button id="addCardBtn" class="btn" type="submit">👀 Preview Profile</button>
+                <button id="copyJsonBtn" class="btn secondary" type="button">📋 Copy JSON</button>
+                <button id="downloadJsonBtn" class="btn secondary" type="button">💾 Download</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Universal Preview Section -->
+          <div class="preview-card" id="profilePreview" style="display:none;">
+            <h3>📋 Preview Your Expert Card</h3>
+            <div id="previewContent"></div>
+            <div class="row" style="margin-top:20px;">
+              <button type="button" class="btn" onclick="finalizeProfile()">✅ Add to Network</button>
+              <button type="button" class="btn secondary" onclick="editProfile()">✏️ Edit More</button>
+              <button type="button" class="btn secondary" onclick="copyProfileJSON()">📋 Copy JSON</button>
+            </div>
+            <div id="saveHint" style="display:none;margin-top:10px;" class="small">
+              Profile data copied to clipboard! This would be sent to the server in production.
+            </div>
+          </div>
+
+          <!-- Admin Tools -->
+          <div class="admin-tools" id="adminTools">
+            <div class="row" style="margin-top:16px;gap:10px;">
+              <span class="pill">Local preview: <strong id="localCount">0</strong> item(s)</span>
+              <button id="exportAllBtn" class="btn secondary" type="button">📦 Export All</button>
+              <button id="clearLocalBtn" class="btn secondary danger" type="button" title="Clear local additions">🗑️ Clear Local</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="experts">
+      <div class="grid" id="grid"></div>
+      <p class="small" style="margin-top:10px">Want to join this network? <a href="/join/">Learn more and apply</a> or email <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div class="logo" style="margin-bottom:8px"><span class="logo-mark"></span><span>Corporate <span style="opacity:.8">AI</span> Solutions</span></div>
+        <p class="small">Grey‑hair wisdom × modern AI engineering. Outcome‑driven automation with governance and adoption built‑in.</p>
+      </div>
+      <div>
+        <h3 style="margin:0 0 8px;color:var(--headline);font-size:18px">Contact</h3>
+        <p class="small">📧 <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a><br>📞 <a href="tel:+61402612471">+61 402 612 471</a><br>🌐 <a href="https://corporateaisolutions.com/offerings/">corporateaisolutions.com/offerings</a></p>
+        <p class="small">© <span id="y"></span> Corporate AI Solutions.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Base seed data =====
+    const BASE_EXPERTS = [
+      {
+        name: "Dennis McMahon",
+        title: "Founder · Operator & Advisor",
+        expertise: ["Construction", "Modular/Prefab", "Go‑to‑Market", "AI Strategy"],
+        photo: "https://corporateaisolutions.com/wp-content/uploads/2024/11/Screenshot-2024-07-03-162218.png",
+        linkedin: "https://www.linkedin.com/in/",
+        email: "dennis@corporateaisolutions.com",
+        bio: "Operator, builder, and advisor across modular construction and AI‑enabled platforms. Focused on pragmatic automation and measurable outcomes."
+      }
+    ];
+
+    const STORAGE_KEY = "cais_experts_local";
+    const ADMIN_PASS_HASH = "sha256:8e48abd0c30b9f37ecca437da9749e85a0b4399bf5161f9aa840492054b41e8e";
+    const INVITE_CODE_HASH = "sha256:d67653f1ff3ca9ff79bfed8b0fba1d9513fe9ffaf16b1377aed838d28e3e35a9";
+
+    // ===== Global State =====
+    let currentProfile = {};
+    let currentCreationTab = 'ai';
+    let currentPhotoTab = 'upload';
+    let selectedImages = { ai: null, manual: null };
+
+    // ===== DOM Elements =====
+    const grid = document.getElementById('grid');
+    const search = document.getElementById('search');
+    const createPanel = document.getElementById('create-panel');
+    const adminBtn = document.getElementById('adminUnlockBtn');
+    const inviteBtn = document.getElementById('inviteUnlockBtn');
+    const adminTools = document.getElementById('adminTools');
+    const localCount = document.getElementById('localCount');
+
+    // ===== Utility Functions =====
+    function setCookie(n,v,days=7){ const d=new Date(); d.setTime(d.getTime()+days*864e5); document.cookie=`${n}=${v};expires=${d.toUTCString()};path=/;SameSite=Lax`; }
+    function getCookie(n){ return document.cookie.split('; ').find(r=>r.startsWith(n+'='))?.split('=')[1]; }
+    async function sha256Hex(t){ const buf=new TextEncoder().encode(t); const hash=await crypto.subtle.digest('SHA-256', buf); return [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join(''); }
+
+    function loadLocal(){
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]'); } catch { return []; }
+    }
+    function saveLocal(arr){ localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+
+    function getMerged(){
+      const locals = loadLocal();
+      localCount.textContent = String(locals.length);
+      return [...locals, ...BASE_EXPERTS];
+    }
+
+    // ===== Card Template & Rendering =====
+    function cardTemplate(x, idx, isAdmin){
+      const tags = x.expertise.map(t => `<span class="tag">${t}</span>`).join('');
+      const linkedin = x.linkedin ? `<a class="link" href="${x.linkedin}" target="_blank" rel="noopener">🔗 LinkedIn</a>` : '';
+      const email = x.email ? `<a class="link" href="mailto:${x.email}">✉️ Email</a>` : '';
+      const adminX = isAdmin ? `<button class="link danger" data-remove="${idx}">🗑️ Remove</button>` : '';
+      return `
+        <article class="card">
+          <div class="head">
+            <img class="avatar" src="${x.photo}" alt="Headshot of ${x.name}" loading="lazy" decoding="async"/>
+            <div>
+              <div class="name">${x.name}</div>
+              <div class="title">${x.title}</div>
+            </div>
+          </div>
+          <div class="tags">${tags}</div>
+          <p class="bio">${x.bio}</p>
+          <div class="links">${linkedin}${email}${adminX}</div>
+        </article>
+      `;
+    }
+
+    function matches(x, q){
+      const hay = (x.name + ' ' + x.title + ' ' + x.expertise.join(' ') + ' ' + x.bio).toLowerCase();
+      return hay.includes(q.toLowerCase());
+    }
+
+    function render(list){
+      const isAdmin = getCookie('cais_admin') === '1';
+      grid.innerHTML = list.map((x, i)=> cardTemplate(x, i, isAdmin)).join('');
+      if (isAdmin) {
+        grid.querySelectorAll('[data-remove]').forEach(btn => {
+          btn.addEventListener('click', (e)=>{
+            const idx = Number(e.currentTarget.getAttribute('data-remove'));
+            const locals = loadLocal();
+            if (idx < locals.length) {
+              locals.splice(idx,1);
+              saveLocal(locals);
+              refresh();
+            } else {
+              alert('Only locally added preview cards can be removed here.');
+            }
+          });
+        });
+      }
+    }
+
+    function refresh(){
+      const q = search.value.trim();
+      const merged = getMerged();
+      render(q ? merged.filter(x => matches(x, q)) : merged);
+    }
+
+    search.addEventListener('input', refresh);
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== Authentication & Unlock Logic =====
+    const qp = new URLSearchParams(location.search);
+    const isAdminQuery = qp.get('admin') === '1';
+
+    (function initUnlock(){
+      const adminCookie = getCookie('cais_admin');
+      const inviteCookie = getCookie('cais_invited');
+      if (adminCookie === '1') showAdminUI();
+      else if (inviteCookie === '1') showInviteUI();
+      else if (isAdminQuery) { createPanel.style.display = 'block'; document.getElementById('adminUnlockBar').style.display = 'block'; }
+      else createPanel.style.display = 'block';
+    })();
+
+    adminBtn.addEventListener('click', ()=> { 
+      createPanel.style.display='block'; 
+      document.getElementById('adminUnlockBar').style.display='flex'; 
+      document.getElementById('inviteUnlockBar').style.display='none'; 
+    });
+    inviteBtn.addEventListener('click', ()=> { 
+      createPanel.style.display='block'; 
+      document.getElementById('inviteUnlockBar').style.display='flex'; 
+      document.getElementById('adminUnlockBar').style.display='none'; 
+    });
+
+    document.getElementById('adminPassGo').addEventListener('click', async ()=>{
+      const pass = document.getElementById('adminPass').value.trim();
+      const hex = await sha256Hex(pass);
+      if ('sha256:'+hex === ADMIN_PASS_HASH){
+        setCookie('cais_admin','1');
+        showAdminUI();
+        document.getElementById('adminStatus').textContent = 'Unlocked (Admin)';
+      } else {
+        document.getElementById('adminStatus').textContent = 'Incorrect passcode.';
+      }
+    });
+
+    document.getElementById('inviteGo').addEventListener('click', async ()=>{
+      const code = document.getElementById('inviteCode').value.trim();
+      const hex = await sha256Hex(code);
+      if ('sha256:'+hex === INVITE_CODE_HASH){
+        setCookie('cais_invited','1');
+        showInviteUI();
+        document.getElementById('inviteStatus').textContent = 'Invite accepted.';
+      } else {
+        document.getElementById('inviteStatus').textContent = 'Invalid code.';
+      }
+    });
+
+    function showAdminUI(){
+      createPanel.style.display = 'block';
+      document.getElementById('adminUnlockBar').style.display = 'none';
+      document.getElementById('inviteUnlockBar').style.display = 'none';
+      document.getElementById('linkedinExplanation').style.display = 'block';
+      document.getElementById('creationTabs').style.display = 'block';
+      adminTools.style.display = 'block';
+      refresh();
+    }
+    function showInviteUI(){
+      createPanel.style.display = 'block';
+      document.getElementById('linkedinExplanation').style.display = 'block';
+      document.getElementById('creationTabs').style.display = 'block';
+      adminTools.style.display = 'none';
+      refresh();
+    }
+
+    // ===== Tab Management =====
+    function switchCreationTab(tabName) {
+      document.querySelectorAll('#creationTabs .tab').forEach(tab => tab.classList.remove('active'));
+      event.target.classList.add('active');
+      document.querySelectorAll('#creationTabs .tab-content').forEach(content => content.classList.remove('active'));
+      document.getElementById(tabName + '-creation-tab').classList.add('active');
+      currentCreationTab = tabName;
+    }
+
+    function switchPhotoTab(tabName, context) {
+      // Update tab buttons for the specific context (ai or manual)
+      const contextTabs = document.querySelectorAll(`#${context}-creation-tab .tab`);
+      contextTabs.forEach(tab => tab.classList.remove('active'));
+      
+      // Find the correct tab button and activate it
+      const tabIndex = ['upload', 'generate', 'url'].indexOf(tabName);
+      if (contextTabs[tabIndex]) contextTabs[tabIndex].classList.add('active');
+      
+      // Update tab content for the specific context
+      document.querySelectorAll(`[id^="${context}-"][id$="-tab"].tab-content`).forEach(content => content.classList.remove('active'));
+      const targetTab = document.getElementById(`${context}-${tabName}-tab`);
+      if (targetTab) targetTab.classList.add('active');
+    }
+
+    // ===== AI Profile Generation =====
+    function openLinkedInHelper() {
+      window.open('https://www.linkedin.com', '_blank');
+      setTimeout(() => {
+        alert('💡 Tip: Go to your LinkedIn profile, press Ctrl+A (or Cmd+A) to select all, then Ctrl+C to copy. Come back here and paste in the text area!');
+      }, 1000);
+    }
+
+    async function generateAIProfile() {
+      const content = document.getElementById('linkedinContent').value.trim();
+      if (!content) {
+        alert('Please paste your LinkedIn profile content first!');
+        return;
+      }
+
+      const generateBtn = document.getElementById('generateBtn');
+      const loadingIndicator = document.getElementById('loadingIndicator');
+      
+      generateBtn.style.display = 'none';
+      loadingIndicator.style.display = 'flex';
+
+      try {
+        const generatedData = await callAIService(content);
+        
+        // Populate AI form fields
+        document.getElementById('ai_name').value = generatedData.name || '';
+        document.getElementById('ai_title').value = generatedData.title || '';
+        document.getElementById('ai_expertise').value = generatedData.expertise.join(', ') || '';
+        document.getElementById('ai_bio').value = generatedData.bio || '';
+        document.getElementById('ai_linkedin').value = generatedData.linkedin || '';
+        document.getElementById('ai_email').value = generatedData.email || '';
+
+        document.getElementById('generatedProfileForm').style.display = 'block';
+        document.getElementById('generatedProfileForm').scrollIntoView({ behavior: 'smooth' });
+
+      } catch (error) {
+        alert('Sorry, there was an error generating your profile. Please try the manual entry option or try again later.');
+        console.error('AI Generation Error:', error);
+      } finally {
+        generateBtn.style.display = 'inline-flex';
+        loadingIndicator.style.display = 'none';
+      }
+    }
+
+    async function callAIService(linkedinContent) {
+      try {
+        const response = await fetch('/greyhairs/api/generate-profile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            linkedinContent: linkedinContent
+          })
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error || 'Failed to generate profile');
+        }
+
+        const result = await response.json();
+        return result;
+        
+      } catch (error) {
+        console.error('AI Generation Error:', error);
+        throw error;
+      }
+    }
+
+    async function regenerateAIProfile() {
+      if (confirm('This will regenerate your profile with a different focus. Continue?')) {
+        await generateAIProfile();
+      }
+    }
+
+    // ===== Image Management =====
+    function handleFileSelect(event, context) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById(`${context}-preview-img`).src = e.target.result;
+          document.getElementById(`${context}-upload-content`).classList.add('hidden');
+          document.getElementById(`${context}-image-preview`).classList.remove('hidden');
+          selectedImages[context] = e.target.result;
+          
+          // Update hidden field
+          const hiddenField = context === 'ai' ? 'ai_photo' : 'f_photo';
+          document.getElementById(hiddenField).value = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function generateAvatars(context) {
+      const initials = document.getElementById(`${context}-initials`).value.toUpperCase().slice(0, 3);
+      if (!initials) {
+        alert('Please enter your initials');
+        return;
+      }
+
+      const colors = [
+        { bg: '#60a5fa', text: '#020617' },
+        { bg: '#22d3ee', text: '#020617' },
+        { bg: '#a78bfa', text: '#fff' },
+        { bg: '#f59e0b', text: '#020617' },
+        { bg: '#10b981', text: '#fff' },
+        { bg: '#ef4444', text: '#fff' }
+      ];
+
+      const container = document.getElementById(`${context}-avatar-options`);
+      container.innerHTML = '';
+
+      colors.forEach(color => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 200;
+        canvas.height = 200;
+        const ctx = canvas.getContext('2d');
+        
+        ctx.fillStyle = color.bg;
+        ctx.fillRect(0, 0, 200, 200);
+        ctx.fillStyle = color.text;
+        ctx.font = 'bold 80px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(initials, 100, 100);
+
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL();
+        img.className = 'avatar-option';
+        img.onclick = () => {
+          document.querySelectorAll(`#${context}-avatar-options .avatar-option`).forEach(av => av.classList.remove('selected'));
+          img.classList.add('selected');
+          selectedImages[context] = img.src;
+          
+          const hiddenField = context === 'ai' ? 'ai_photo' : 'f_photo';
+          document.getElementById(hiddenField).value = img.src;
+        };
+        container.appendChild(img);
+      });
+    }
+
+    function testPhotoUrl(context) {
+      const url = document.getElementById(`${context}-photo-url`).value;
+      if (!url) {
+        alert('Please enter a photo URL');
+        return;
+      }
+
+      const img = document.getElementById(`${context}-url-img`);
+      img.onload = () => {
+        document.getElementById(`${context}-url-preview`).classList.remove('hidden');
+        selectedImages[context] = url;
+        
+        const hiddenField = context === 'ai' ? 'ai_photo' : 'f_photo';
+        document.getElementById(hiddenField).value = url;
+      };
+      img.onerror = () => {
+        alert('Could not load image from URL. Please check the URL.');
+      };
+      img.src = url;
+    }
+
+    // ===== Profile Creation & Preview =====
+    function buildProfile(context) {
+      if (context === 'ai') {
+        return {
+          name: document.getElementById('ai_name').value || 'Your Name',
+          title: document.getElementById('ai_title').value || 'Your Title',
+          expertise: (document.getElementById('ai_expertise').value || '').split(',').map(s => s.trim()).filter(Boolean),
+          bio: document.getElementById('ai_bio').value || 'Your bio will appear here.',
+          linkedin: document.getElementById('ai_linkedin').value,
+          email: document.getElementById('ai_email').value,
+          photo: document.getElementById('ai_photo').value || selectedImages.ai || 'https://via.placeholder.com/120x120?text=Photo'
+        };
+      } else {
+        return {
+          name: document.getElementById('f_name').value || 'Your Name',
+          title: document.getElementById('f_title').value || 'Your Title',
+          expertise: (document.getElementById('f_expertise').value || '').split(',').map(s => s.trim()).filter(Boolean),
+          bio: document.getElementById('f_bio').value || 'Your bio will appear here.',
+          linkedin: document.getElementById('f_linkedin').value,
+          email: document.getElementById('f_email').value,
+          photo: document.getElementById('f_photo').value || selectedImages.manual || 'https://via.placeholder.com/120x120?text=Photo'
+        };
+      }
+    }
+
+    function previewAIProfile() {
+      currentProfile = buildProfile('ai');
+      showProfilePreview();
+    }
+
+    function showProfilePreview() {
+      const expertiseTags = currentProfile.expertise.map(exp => `<span class="tag">${exp}</span>`).join(' ');
+      const linkedinLink = currentProfile.linkedin ? `<a href="${currentProfile.linkedin}" target="_blank" style="color:var(--brand)">🔗 LinkedIn</a>` : '';
+      const emailLink = currentProfile.email ? `<a href="mailto:${currentProfile.email}" style="color:var(--brand)">✉️ Email</a>` : '';
+
+      document.getElementById('previewContent').innerHTML = `
+        <div style="display:flex; gap:20px; align-items:flex-start; background:rgba(17,24,39,.5); padding:20px; border-radius:12px;">
+          <img src="${currentProfile.photo}" alt="${currentProfile.name}" style="width:120px; height:120px; border-radius:12px; object-fit:cover; background:#333;">
+          <div style="flex:1;">
+            <h4 style="margin:0 0 6px; color:var(--headline); font-size:20px;">${currentProfile.name}</h4>
+            <p style="margin:0 0 12px; color:var(--muted); font-size:16px;">${currentProfile.title}</p>
+            <div style="margin:12px 0;">${expertiseTags}</div>
+            <p style="margin:12px 0; font-size:15px; line-height:1.5;">${currentProfile.bio}</p>
+            <div style="display:flex; gap:16px; margin-top:16px;">
+              ${linkedinLink} ${emailLink}
+            </div>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('profilePreview').style.display = 'block';
+      document.getElementById('profilePreview').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function editProfile() {
+      document.getElementById('profilePreview').style.display = 'none';
+    }
+
+    function finalizeProfile() {
+      const locals = loadLocal();
+      locals.unshift(currentProfile);
+      saveLocal(locals);
+      refresh();
+      
+      document.getElementById('saveHint').style.display = 'block';
+      setTimeout(() => document.getElementById('saveHint').style.display = 'none', 3000);
+      
+      window.scrollTo({ top: document.getElementById('experts').offsetTop - 40, behavior: 'smooth' });
+    }
+
+    function copyProfileJSON() {
+      const json = JSON.stringify(currentProfile, null, 2);
+      navigator.clipboard.writeText(json).then(() => {
+        document.getElementById('saveHint').textContent = 'Profile JSON copied to clipboard!';
+        document.getElementById('saveHint').style.display = 'block';
+        setTimeout(() => document.getElementById('saveHint').style.display = 'none', 3000);
+      });
+    }
+
+    // ===== Manual Form Handling =====
+    document.getElementById('manualForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      currentProfile = buildProfile('manual');
+      showProfilePreview();
+    });
+
+    document.getElementById('copyJsonBtn').addEventListener('click', () => {
+      const obj = buildProfile('manual');
+      const json = JSON.stringify(obj, null, 2);
+      navigator.clipboard.writeText(json).then(() => {
+        alert('📋 JSON copied to clipboard!');
+      });
+    });
+
+    document.getElementById('downloadJsonBtn').addEventListener('click', () => {
+      const obj = buildProfile('manual');
+      const blob = new Blob([JSON.stringify(obj,null,2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = (obj.name||'expert').replace(/\s+/g,'_') + '.json';
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+
+    // ===== Admin Tools =====
+    document.getElementById('exportAllBtn')?.addEventListener('click', () => {
+      const all = getMerged();
+      const blob = new Blob([JSON.stringify(all,null,2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'experts_all.json';
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+
+    document.getElementById('clearLocalBtn')?.addEventListener('click', () => {
+      if (confirm('Clear locally added preview cards?')){
+        localStorage.removeItem(STORAGE_KEY);
+        refresh();
+      }
+    });
+
+    // ===== Drag & Drop Setup =====
+    function setupDragAndDrop() {
+      const zones = document.querySelectorAll('.upload-zone');
+      zones.forEach(zone => {
+        zone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          zone.classList.add('dragover');
+        });
+        
+        zone.addEventListener('dragleave', () => {
+          zone.classList.remove('dragover');
+        });
+        
+        zone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          zone.classList.remove('dragover');
+          const files = e.dataTransfer.files;
+          if (files.length > 0) {
+            const context = zone.id.includes('ai') ? 'ai' : 'manual';
+            const event = { target: { files: files } };
+            handleFileSelect(event, context);
+          }
+        });
+      });
+    }
+
+    // Initialize the application
+    refresh();
+    setupDragAndDrop();
+  </script>
+</body>
+</html>
