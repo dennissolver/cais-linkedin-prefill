@@ -128,7 +128,7 @@
       </div>
     </section>
 
-    <!-- Create Card / Admin & Invite Panel -->
+    <!-- Create Card / Admin & Invite Panel - HIDDEN BY DEFAULT -->
     <section class="wrap" id="create-panel" style="display:none; margin-top:-10px;">
       <div class="panel">
         <div class="row" style="justify-content:space-between;">
@@ -136,6 +136,7 @@
           <div class="row">
             <button id="adminUnlockBtn" class="btn secondary">Admin Unlock</button>
             <button id="inviteUnlockBtn" class="btn secondary">Have Invite Code?</button>
+            <button id="closePanelBtn" class="btn secondary" onclick="closeCreatePanel()" title="Close and return to cards view">✕ Close</button>
           </div>
         </div>
 
@@ -423,7 +424,10 @@ You can copy this directly from your LinkedIn profile page."
 
     <section class="wrap" id="experts">
       <div class="grid" id="grid"></div>
-      <p class="small" style="margin-top:10px">Want to join this network? <a href="/join/">Learn more and apply</a> or email <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a>.</p>
+      <div class="row" style="margin-top:20px;justify-content:space-between;align-items:center;">
+        <p class="small">Want to join this network? <a href="/join/">Learn more and apply</a> or email <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a>.</p>
+        <button id="showCreatePanelBtn" class="btn secondary" onclick="showCreatePanel()">+ Add Expert Profile</button>
+      </div>
     </section>
   </main>
 
@@ -555,8 +559,11 @@ You can copy this directly from your LinkedIn profile page."
       const inviteCookie = getCookie('cais_invited');
       if (adminCookie === '1') showAdminUI();
       else if (inviteCookie === '1') showInviteUI();
-      else if (isAdminQuery) { createPanel.style.display = 'block'; document.getElementById('adminUnlockBar').style.display = 'block'; }
-      else createPanel.style.display = 'block';
+      else if (isAdminQuery) { 
+        createPanel.style.display = 'block'; 
+        document.getElementById('adminUnlockBar').style.display = 'block'; 
+      }
+      // Default: panel stays hidden - NO ELSE CLAUSE TO SHOW PANEL
     })();
 
     adminBtn.addEventListener('click', ()=> { 
@@ -569,6 +576,31 @@ You can copy this directly from your LinkedIn profile page."
       document.getElementById('inviteUnlockBar').style.display='flex'; 
       document.getElementById('adminUnlockBar').style.display='none'; 
     });
+
+    function closeCreatePanel() {
+      createPanel.style.display = 'none';
+      
+      // Reset all panels to hidden state
+      document.getElementById('adminUnlockBar').style.display = 'none';
+      document.getElementById('inviteUnlockBar').style.display = 'none';
+      document.getElementById('linkedinExplanation').style.display = 'none';
+      document.getElementById('creationTabs').style.display = 'none';
+      document.getElementById('profilePreview').style.display = 'none';
+      
+      // Clear any form data
+      document.getElementById('linkedinContent').value = '';
+      if (document.getElementById('generatedProfileForm')) {
+        document.getElementById('generatedProfileForm').style.display = 'none';
+      }
+      
+      // Scroll back to top of experts section
+      document.getElementById('experts').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showCreatePanel() {
+      createPanel.style.display = 'block';
+      createPanel.scrollIntoView({ behavior: 'smooth' });
+    }
 
     document.getElementById('adminPassGo').addEventListener('click', async ()=>{
       const pass = document.getElementById('adminPass').value.trim();
@@ -681,7 +713,10 @@ You can copy this directly from your LinkedIn profile page."
 
     async function callAIService(linkedinContent) {
       try {
-        const response = await fetch('/greyhairs/api/generate-profile', {
+        // Your Vercel API endpoint
+        const VERCEL_API_URL = 'https://corporateaisolutionscardprefill.vercel.app/api/generate-profile';
+        
+        const response = await fetch(VERCEL_API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
