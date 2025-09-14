@@ -691,10 +691,10 @@ You can copy this directly from your LinkedIn profile page."
       try {
         const generatedData = await callAIService(content);
         
-        // Populate AI form fields
+        // Populate AI form fields with safe fallbacks
         document.getElementById('ai_name').value = generatedData.name || '';
         document.getElementById('ai_title').value = generatedData.title || '';
-        document.getElementById('ai_expertise').value = generatedData.expertise.join(', ') || '';
+        document.getElementById('ai_expertise').value = (generatedData.expertise && Array.isArray(generatedData.expertise)) ? generatedData.expertise.join(', ') : '';
         document.getElementById('ai_bio').value = generatedData.bio || '';
         document.getElementById('ai_linkedin').value = generatedData.linkedin || '';
         document.getElementById('ai_email').value = generatedData.email || '';
