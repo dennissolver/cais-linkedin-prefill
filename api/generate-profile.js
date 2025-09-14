@@ -14,40 +14,33 @@ export default async function handler(req, res) {
         const { content } = req.body;
 
         if (!content || typeof content !== 'string') {
-            return res.status(400).json({ error: 'Invalid or missing LinkedIn content' });
+            return res.status(400).json({ error: 'Invalid or missing input content' });
         }
 
         const prompt = `
-You are an AI assistant for Corporate AI Solutions, a company that connects seasoned executives with AI expertise. Given a user's LinkedIn profile content, generate a professional profile tailored for our corporate AI consulting network. Extract and emphasize relevant experience and expertise. If the content includes a profile photo URL (e.g., an image link), include it; otherwise, set photoUrl to an empty string. Return the response in JSON format with the following fields: name, title, expertiseAreas (comma-separated string), bio, linkedinUrl (if found), email (if found), photoUrl.
+You are an AI assistant for Corporate AI Solutions, a company that connects seasoned executives with AI expertise. Based on the provided input, generate a professional bio tailored for our corporate AI consulting network. The input may include brief details about experience or expertise. Keep the bio concise, 50-100 words, and emphasize relevant AI consulting experience. Return the response in JSON format with the following fields: bio.
 
-LinkedIn content:
+Input:
 ${content}
 
 Output format:
 {
-  "name": "",
-  "title": "",
-  "expertiseAreas": "",
-  "bio": "",
-  "linkedinUrl": "",
-  "email": "",
-  "photoUrl": ""
+  "bio": ""
 }
 `;
 
         const completion = await openai.chat.completions.create({
             model: 'gpt-4o-mini',
             messages: [
-                { role: 'system', content: 'You are a professional profile generator.' },
+                { role: 'system', content: 'You are a professional bio generator.' },
                 { role: 'user', content: prompt },
             ],
             response_format: { type: 'json_object' },
         });
 
         const generatedProfile = JSON.parse(completion.choices[0].message.content);
-
-        if (!generatedProfile.name || !generatedProfile.title) {
-            return res.status(500).json({ error: 'Failed to generate valid profile' });
+        if (!generatedProfile.bio) {
+            return res.status(500).json({ error: 'Failed to generate valid bio' });
         }
 
         return res.status(200).json({
