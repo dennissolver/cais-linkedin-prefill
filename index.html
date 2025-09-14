@@ -46,6 +46,7 @@
     .foot{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
     @media(max-width:980px){.foot{grid-template-columns:1fr}}
     .small{font-size:13px;color:var(--muted)}
+    .debug-visible { display: block !important; border: 2px solid red; } /* Debug class to force visibility */
   </style>
 </head>
 <body>
@@ -79,54 +80,66 @@
       <p class="small" style="margin-top:10px">Want to join this network? <a href="/join/">Learn more and apply</a> or email <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a>.</p>
     </section>
   </main>
-  <section class="wrap" id="create-panel" style="display:none; margin-top:-10px;">
+  <section class="wrap" id="create-panel" class="debug-visible" style="margin-top:-10px;"> <!-- Debug visibility -->
     <div class="card" style="padding:16px;">
       <div style="display:flex;gap:2px;align-items:center;justify-content:space-between;">
         <h2 style="margin:0;">Create Expert Card</h2>
         <div style="display:flex;gap:8px;">
-          <button id="adminUnlockBtn" class="btn secondary">Admin Link</button>
-          <button id="inviteUnlockBtn" class="btn secondary">Invitation Link</button>
+          <button id="adminLinkBtn" class="btn secondary">Admin Link</button>
+          <button id="inviteLinkBtn" class="btn secondary">Invitation Link</button>
         </div>
       </div>
-      <!-- Unlock bars -->
+      <!-- Admin Unlock Bar -->
       <div id="adminUnlockBar" style="display:none;margin-top:12px;">
         <input id="adminPass" type="password" placeholder="Enter Admin Passcode" class="filterbar" style="width:280px;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"/>
-        <button id="adminPassGo" class="btn" style="margin-left:8px;">Unlock</button>
+        <button id="adminUnlockBtn" class="btn" style="margin-left:8px;">Unlock</button>
         <span id="adminStatus" class="small" style="margin-left:10px;"></span>
       </div>
+      <!-- Invitation Unlock Bar -->
       <div id="inviteUnlockBar" style="display:none;margin-top:12px;">
         <input id="inviteCode" type="password" placeholder="Enter Invitation Code" class="filterbar" style="width:280px;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"/>
-        <button id="inviteGo" class="btn" style="margin-left:8px;">Continue</button>
+        <button id="inviteUnlockBtn" class="btn" style="margin-left:8px;">Continue</button>
         <span id="inviteStatus" class="small" style="margin-left:10px;"></span>
       </div>
-      <!-- Drag & drop -->
-      <div id="dropZone" style="display:none;margin-top:16px;border:2px dashed rgba(148,163,184,.35);border-radius:12px;padding:16px;text-align:center;background:rgba(2,6,23,.35);">
-        Drag a LinkedIn profile link here (or paste below)
-        <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;">
-          <input id="linkedinInput" type="url" placeholder="https://www.linkedin.com/in/..." style="width:420px;max-width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"/>
-          <button id="prefillBtn" class="btn">Prefill</button>
-        </div>
-        <p class="small" style="margin-top:8px;color:var(--muted)">We won’t scrape LinkedIn (CORS). This just seeds the form; you can edit.</p>
-      </div>
-      <!-- Form -->
-      <form id="expertForm" style="display:none;margin-top:16px;">
+      <!-- Admin Form -->
+      <form id="adminForm" style="display:none;margin-top:16px;">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <label class="small">Name <input id="f_name" required class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
-          <label class="small">Title <input id="f_title" required class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
-          <label class="small">Expertise (comma-separated) <input id="f_expertise" placeholder="Construction, Compliance, AI Strategy" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
-          <label class="small">Photo URL <input id="f_photo" placeholder="https://..." class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
-          <label class="small">LinkedIn URL <input id="f_linkedin" type="url" placeholder="https://www.linkedin.com/in/..." class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
-          <label class="small">Email <input id="f_email" type="email" placeholder="name@company.com" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">Name <input id="admin_name" required class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">Title <input id="admin_title" required class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">Expertise (comma-separated) <input id="admin_expertise" placeholder="Construction, Compliance, AI Strategy" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">Photo URL <input id="admin_photo" placeholder="https://..." class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">LinkedIn URL <input id="admin_linkedin" type="url" placeholder="https://www.linkedin.com/in/..." class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)" onchange="prefillLinkedInPhoto(this.value, 'admin')"></label>
+          <label class="small">Email <input id="admin_email" type="email" placeholder="name@company.com" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
         </div>
         <label class="small" style="display:block;margin-top:12px;">Short Bio
-          <textarea id="f_bio" rows="4" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></textarea>
+          <textarea id="admin_bio" rows="4" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></textarea>
         </label>
         <div style="display:flex;gap:8px;margin-top:12px;">
-          <button id="addCardBtn" class="btn" type="submit">Add Card (Preview Only)</button>
-          <button id="copyJsonBtn" class="btn secondary" type="button">Copy JSON to Clipboard</button>
-          <button id="ai-bio-generate" class="btn secondary" type="button">Generate AI Bio</button>
+          <button id="adminAddCardBtn" class="btn" type="submit">Add Member Card</button>
+          <button id="adminCopyJsonBtn" class="btn secondary" type="button">Copy JSON to Clipboard</button>
+          <button id="adminAiBioGenerate" class="btn secondary" type="button">Generate AI Bio</button>
         </div>
-        <p class="small" id="saveHint" style="margin-top:8px;color:var(--muted);display:none;">Copied! Paste this object into the <code>experts</code> array in the page source.</p>
+        <p class="small" id="adminSaveHint" style="margin-top:8px;color:var(--muted);display:none;">Copied! Paste this object into the <code>experts</code> array in the page source.</p>
+      </form>
+      <!-- Invitation Form -->
+      <form id="inviteForm" style="display:none;margin-top:16px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <label class="small">Name <input id="invite_name" required class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">Title <input id="invite_title" required class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">Expertise (comma-separated) <input id="invite_expertise" placeholder="Construction, Compliance, AI Strategy" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">Photo URL <input id="invite_photo" placeholder="https://..." class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+          <label class="small">LinkedIn URL <input id="invite_linkedin" type="url" placeholder="https://www.linkedin.com/in/..." class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)" onchange="prefillLinkedInPhoto(this.value, 'invite')"></label>
+          <label class="small">Email <input id="invite_email" type="email" placeholder="name@company.com" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></label>
+        </div>
+        <label class="small" style="display:block;margin-top:12px;">Short Bio
+          <textarea id="invite_bio" rows="4" class="filterbar" style="width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(148,163,184,.25);background:#0f172a;color:var(--text)"></textarea>
+        </label>
+        <div style="display:flex;gap:8px;margin-top:12px;">
+          <button id="inviteAddCardBtn" class="btn" type="submit">Add My Card</button>
+          <button id="inviteCopyJsonBtn" class="btn secondary" type="button">Copy JSON to Clipboard</button>
+          <button id="inviteAiBioGenerate" class="btn secondary" type="button">Generate AI Bio</button>
+        </div>
+        <p class="small" id="inviteSaveHint" style="margin-top:8px;color:var(--muted);display:none;">Copied! Submit this to dennis@corporateaisolutions.com for approval.</p>
       </form>
     </section>
   <footer>
@@ -198,164 +211,238 @@
     // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Card creation panel
-    const createPanel = document.getElementById('create-panel');
-    const adminUnlockBtn = document.getElementById('adminUnlockBtn');
-    const inviteUnlockBtn = document.getElementById('inviteUnlockBtn');
+    // Admin Link and Invitation Link Logic
+    const adminLinkBtn = document.getElementById('adminLinkBtn');
+    const inviteLinkBtn = document.getElementById('inviteLinkBtn');
     const adminUnlockBar = document.getElementById('adminUnlockBar');
     const inviteUnlockBar = document.getElementById('inviteUnlockBar');
     const adminPass = document.getElementById('adminPass');
-    const adminPassGo = document.getElementById('adminPassGo');
+    const adminUnlockBtn = document.getElementById('adminUnlockBtn');
     const adminStatus = document.getElementById('adminStatus');
     const inviteCode = document.getElementById('inviteCode');
-    const inviteGo = document.getElementById('inviteGo');
+    const inviteUnlockBtn = document.getElementById('inviteUnlockBtn');
     const inviteStatus = document.getElementById('inviteStatus');
-    const dropZone = document.getElementById('dropZone');
-    const expertForm = document.getElementById('expertForm');
-    const linkedinInput = document.getElementById('linkedinInput');
-    const prefillBtn = document.getElementById('prefillBtn');
-    const addCardBtn = document.getElementById('addCardBtn');
-    const copyJsonBtn = document.getElementById('copyJsonBtn');
-    const saveHint = document.getElementById('saveHint');
-    const aiBioGenerate = document.getElementById('ai-bio-generate');
-    const aiBioInput = document.getElementById('ai-bio-input');
+    const adminForm = document.getElementById('adminForm');
+    const inviteForm = document.getElementById('inviteForm');
+    const adminAddCardBtn = document.getElementById('adminAddCardBtn');
+    const adminCopyJsonBtn = document.getElementById('adminCopyJsonBtn');
+    const adminSaveHint = document.getElementById('adminSaveHint');
+    const inviteAddCardBtn = document.getElementById('inviteAddCardBtn');
+    const inviteCopyJsonBtn = document.getElementById('inviteCopyJsonBtn');
+    const inviteSaveHint = document.getElementById('inviteSaveHint');
+    const adminAiBioGenerate = document.getElementById('adminAiBioGenerate');
+    const inviteAiBioGenerate = document.getElementById('inviteAiBioGenerate');
+    const adminLinkedinInput = document.getElementById('admin_linkedin');
+    const inviteLinkedinInput = document.getElementById('invite_linkedin');
 
-    // Unlock logic
-    adminUnlockBtn.addEventListener('click', () => {
+    // Admin Link Unlock with Hash Security
+    adminLinkBtn.addEventListener('click', () => {
+      console.log('Admin Link button clicked'); // Debug
       adminUnlockBar.style.display = 'block';
+      adminForm.style.display = 'none'; // Hidden until unlocked
       inviteUnlockBar.style.display = 'none';
     });
-    inviteUnlockBtn.addEventListener('click', () => {
+    adminUnlockBtn.addEventListener('click', () => {
+      console.log('Admin Unlock button clicked'); // Debug
+      const inputHash = 'sha256:' + hashString(adminPass.value);
+      const adminHash = 'sha256:8b7df143d91c716ecfa5fa77f3f691b5d6b7e2ee067e5a920a0ed5d4e516b645'; // Hash for 'corpAIcard009'
+      if (inputHash === adminHash) {
+        adminUnlockBar.style.display = 'none';
+        adminForm.style.display = 'block';
+        adminStatus.textContent = 'Admin access granted!';
+        console.log('Admin access unlocked');
+      } else {
+        adminStatus.textContent = 'Incorrect admin passcode.';
+        console.log('Incorrect admin passcode');
+      }
+    });
+
+    // Invitation Link Unlock
+    inviteLinkBtn.addEventListener('click', () => {
+      console.log('Invitation Link button clicked'); // Debug
       inviteUnlockBar.style.display = 'block';
       adminUnlockBar.style.display = 'none';
+      inviteForm.style.display = 'none'; // Hidden until unlocked
     });
-    adminPassGo.addEventListener('click', () => {
-      if (adminPass.value === 'admin123') { // Replace with your admin passcode
-        adminUnlockBar.style.display = 'none';
-        dropZone.style.display = 'block';
-        expertForm.style.display = 'block';
-        adminStatus.textContent = 'Unlocked!';
-      } else {
-        adminStatus.textContent = 'Incorrect passcode.';
-      }
-    });
-    inviteGo.addEventListener('click', () => {
-      if (inviteCode.value === 'invite456') { // Replace with your invite code
+    inviteUnlockBtn.addEventListener('click', () => {
+      console.log('Invitation Unlock button clicked'); // Debug
+      if (inviteCode.value === 'invite456') { // Replace with your invite code or hash
         inviteUnlockBar.style.display = 'none';
-        dropZone.style.display = 'block';
-        expertForm.style.display = 'block';
-        inviteStatus.textContent = 'Validated!';
+        inviteForm.style.display = 'block';
+        inviteStatus.textContent = 'Invitation validated!';
+        console.log('Invitation validated');
       } else {
-        inviteStatus.textContent = 'Invalid code.';
+        inviteStatus.textContent = 'Invalid invitation code.';
+        console.log('Invalid invitation code');
       }
     });
 
-    // Drag and drop
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.style.backgroundColor = 'rgba(148,163,184,.15)';
-    });
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.style.backgroundColor = 'rgba(2,6,23,.35)';
-    });
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.style.backgroundColor = 'rgba(2,6,23,.35)';
-      const url = e.dataTransfer.getData('text');
-      if (url.includes('linkedin.com')) {
-        linkedinInput.value = url;
-      } else {
-        alert('Please drop a valid LinkedIn profile URL');
-      }
+    // Admin Prefill LinkedIn Photo (simulated)
+    adminLinkedinInput.addEventListener('change', () => {
+      prefillLinkedInPhoto(adminLinkedinInput.value, 'admin');
     });
 
-    // Prefill
-    prefillBtn.addEventListener('click', () => {
-      const url = linkedinInput.value.trim();
-      if (url.includes('linkedin.com')) {
-        document.getElementById('f_name').value = 'Prefilled Name';
-        document.getElementById('f_title').value = 'Prefilled Title';
-        document.getElementById('f_expertise').value = 'Prefill, Expertise';
-        document.getElementById('f_photo').value = 'https://via.placeholder.com/300x300.png';
-        document.getElementById('f_linkedin').value = url;
-        document.getElementById('f_email').value = 'prefill@example.com';
-        document.getElementById('f_bio').value = 'Prefilled bio based on LinkedIn data.';
-        alert('LinkedIn URL prefilled. Please review and edit.');
-      } else {
-        alert('Please enter a valid LinkedIn profile URL');
-      }
+    // Invite Prefill LinkedIn Photo (simulated)
+    inviteLinkedinInput.addEventListener('change', () => {
+      prefillLinkedInPhoto(inviteLinkedinInput.value, 'invite');
     });
 
-    // Add Card
-    addCardBtn.addEventListener('click', (e) => {
+    // Admin Add Card
+    adminAddCardBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      console.log('Admin Add Card button clicked'); // Debug
       const newExpert = {
-        name: document.getElementById('f_name').value,
-        title: document.getElementById('f_title').value,
-        expertise: document.getElementById('f_expertise').value.split(',').map(t => t.trim()),
-        photo: document.getElementById('f_photo').value,
-        linkedin: document.getElementById('f_linkedin').value,
-        email: document.getElementById('f_email').value,
-        bio: document.getElementById('f_bio').value
+        name: document.getElementById('admin_name').value,
+        title: document.getElementById('admin_title').value,
+        expertise: document.getElementById('admin_expertise').value.split(',').map(t => t.trim()),
+        photo: document.getElementById('admin_photo').value,
+        linkedin: document.getElementById('admin_linkedin').value,
+        email: document.getElementById('admin_email').value,
+        bio: document.getElementById('admin_bio').value
       };
       if (newExpert.name && newExpert.title) {
         experts.push(newExpert);
         render(experts);
-        expertForm.reset();
+        adminForm.reset();
+        adminSaveHint.style.display = 'none';
+        console.log('New member card added:', newExpert);
       } else {
         alert('Please fill in at least Name and Title.');
       }
     });
 
-    // Copy JSON
-    copyJsonBtn.addEventListener('click', () => {
+    // Admin Copy JSON
+    adminCopyJsonBtn.addEventListener('click', () => {
+      console.log('Admin Copy JSON button clicked'); // Debug
       const newExpert = {
-        name: document.getElementById('f_name').value,
-        title: document.getElementById('f_title').value,
-        expertise: document.getElementById('f_expertise').value.split(',').map(t => t.trim()),
-        photo: document.getElementById('f_photo').value,
-        linkedin: document.getElementById('f_linkedin').value,
-        email: document.getElementById('f_email').value,
-        bio: document.getElementById('f_bio').value
+        name: document.getElementById('admin_name').value,
+        title: document.getElementById('admin_title').value,
+        expertise: document.getElementById('admin_expertise').value.split(',').map(t => t.trim()),
+        photo: document.getElementById('admin_photo').value,
+        linkedin: document.getElementById('admin_linkedin').value,
+        email: document.getElementById('admin_email').value,
+        bio: document.getElementById('admin_bio').value
       };
       navigator.clipboard.writeText(JSON.stringify(newExpert, null, 2));
-      saveHint.style.display = 'block';
-      setTimeout(() => saveHint.style.display = 'none', 3000);
+      adminSaveHint.style.display = 'block';
+      setTimeout(() => adminSaveHint.style.display = 'none', 3000);
     });
 
-    // AI Bio Generation (via Vercel function)
-    if (aiBioGenerate) {
-      aiBioGenerate.addEventListener('click', async () => {
-        const aiInputValue = aiBioInput.value;
-        console.log('AI Bio Generate clicked with input:', aiInputValue);
-        if (!aiInputValue) {
-          alert('Please provide some input for the AI to generate a bio.');
-          return;
+    // Admin AI Bio Generation
+    adminAiBioGenerate.addEventListener('click', async () => {
+      console.log('Admin AI Bio Generate clicked'); // Debug
+      const aiInputValue = prompt('Enter details for AI bio generation (e.g., "20 years in tech, AI expert"):');
+      if (!aiInputValue) {
+        alert('Please provide some input for the AI to generate a bio.');
+        return;
+      }
+      try {
+        const response = await fetch('/api/generate-profile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: aiInputValue }),
+        });
+        const data = await response.json();
+        if (data.success && data.profile.bio) {
+          document.getElementById('admin_bio').value = data.profile.bio;
+          alert('Bio generated successfully!');
+        } else {
+          alert('Failed to generate bio. Error: ' + (data.error || 'Unknown'));
         }
+      } catch (error) {
+        console.error('Vercel function error:', error);
+        alert('Error generating bio: ' + error.message);
+      }
+    });
 
-        try {
-          const response = await fetch('/api/generate-bio', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ input: aiInputValue }),
-          });
+    // Invite Add Card
+    inviteAddCardBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log('Invite Add Card button clicked'); // Debug
+      const newExpert = {
+        name: document.getElementById('invite_name').value,
+        title: document.getElementById('invite_title').value,
+        expertise: document.getElementById('invite_expertise').value.split(',').map(t => t.trim()),
+        photo: document.getElementById('invite_photo').value,
+        linkedin: document.getElementById('invite_linkedin').value,
+        email: document.getElementById('invite_email').value,
+        bio: document.getElementById('invite_bio').value
+      };
+      if (newExpert.name && newExpert.title) {
+        const json = JSON.stringify(newExpert, null, 2);
+        navigator.clipboard.writeText(json);
+        inviteSaveHint.style.display = 'block';
+        setTimeout(() => inviteSaveHint.style.display = 'none', 3000);
+        alert('Profile copied to clipboard. Please email it to dennis@corporateaisolutions.com for approval.');
+        inviteForm.reset();
+      } else {
+        alert('Please fill in at least Name and Title.');
+      }
+    });
 
-          const data = await response.json();
-          if (data.bio) {
-            document.getElementById('f_bio').value = data.bio;
-            alert('Bio generated successfully!');
-          } else {
-            alert('Failed to generate bio. Check server logs.');
-          }
-        } catch (error) {
-          console.error('Vercel function error:', error);
-          alert('Error generating bio: ' + error.message);
+    // Invite Copy JSON
+    inviteCopyJsonBtn.addEventListener('click', () => {
+      console.log('Invite Copy JSON button clicked'); // Debug
+      const newExpert = {
+        name: document.getElementById('invite_name').value,
+        title: document.getElementById('invite_title').value,
+        expertise: document.getElementById('invite_expertise').value.split(',').map(t => t.trim()),
+        photo: document.getElementById('invite_photo').value,
+        linkedin: document.getElementById('invite_linkedin').value,
+        email: document.getElementById('invite_email').value,
+        bio: document.getElementById('invite_bio').value
+      };
+      navigator.clipboard.writeText(JSON.stringify(newExpert, null, 2));
+      inviteSaveHint.style.display = 'block';
+      setTimeout(() => inviteSaveHint.style.display = 'none', 3000);
+    });
+
+    // Invite AI Bio Generation
+    inviteAiBioGenerate.addEventListener('click', async () => {
+      console.log('Invite AI Bio Generate clicked'); // Debug
+      const aiInputValue = prompt('Enter details for AI bio generation (e.g., "20 years in tech, AI expert"):');
+      if (!aiInputValue) {
+        alert('Please provide some input for the AI to generate a bio.');
+        return;
+      }
+      try {
+        const response = await fetch('/api/generate-profile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content: aiInputValue }),
+        });
+        const data = await response.json();
+        if (data.success && data.profile.bio) {
+          document.getElementById('invite_bio').value = data.profile.bio;
+          alert('Bio generated successfully!');
+        } else {
+          alert('Failed to generate bio. Error: ' + (data.error || 'Unknown'));
         }
-      });
-    } else {
-      console.error('AI Bio Generate button not found');
+      } catch (error) {
+        console.error('Vercel function error:', error);
+        alert('Error generating bio: ' + error.message);
+      }
+    });
+
+    // Prefill LinkedIn Photo (simulated function)
+    function prefillLinkedInPhoto(url, formType) {
+      if (url.includes('linkedin.com')) {
+        const photoUrl = `${url}/photo`; // Simulated photo URL (real scraping requires LinkedIn API)
+        if (formType === 'admin') {
+          document.getElementById('admin_photo').value = photoUrl;
+        } else if (formType === 'invite') {
+          document.getElementById('invite_photo').value = photoUrl;
+        }
+        console.log(`Prefilled photo URL for ${formType} form: ${photoUrl}`);
+        alert('LinkedIn URL detected. Photo URL prefilled.');
+      }
+    }
+
+    // Hash function for security (using crypto)
+    function hashString(str) {
+      const hash = require('crypto').createHash('sha256');
+      hash.update(str);
+      return hash.digest('hex');
     }
 
     // Footer year
