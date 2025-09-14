@@ -1,0 +1,9 @@
+ {
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://corporateaisolutions.com/greyhairs/",
+      "permanent": true
+    }
+  ]
+}
