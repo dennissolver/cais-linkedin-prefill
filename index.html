@@ -1,389 +1,196 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Grey-Hair Experts | Corporate AI Solutions</title>
-    <!-- Optional: Redirect Vercel to main site (uncomment if needed) -->
-    <!-- <meta http-equiv="refresh" content="0; url=https://corporateaisolutions.com/greyhairs/"> -->
-    <style>
-        .hidden { display: none; }
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 800px;
-            max-height: 90%;
-            overflow-y: auto;
-            position: relative;
-        }
-        .creation-tabs button {
-            padding: 10px 20px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        .creation-tabs button.active {
-            background: #007bff;
-            color: white;
-        }
-        .photo-options button {
-            margin-right: 10px;
-            padding: 8px 16px;
-        }
-        #photo-url, input, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        #photo-preview img {
-            max-width: 200px;
-            border-radius: 50%;
-        }
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background: #007bff;
-            color: white;
-            margin-top: 10px;
-        }
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        #add-expert-btn {
-            background: #28a745;
-        }
-        #close-modal {
-            background: none;
-            color: #000;
-            font-size: 24px;
-        }
-        .experts-preview {
-            margin: 20px 0;
-        }
-        footer {
-            margin-top: 40px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <ul style="list-style: none; display: flex; gap: 20px;">
-            <li>Home</li>
-            <li>About</li>
-            <li>Join Us</li>
-            <li>Products</li>
-            <li>Offerings</li>
-            <li>Blog</li>
-            <li>Contact</li>
-            <li><button>Get Started</button></li>
-        </ul>
-    </nav>
+<style>
+    .greyhairs-hidden {
+        display: none !important;
+    }
+    .greyhairs-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .greyhairs-modal-content {
+        background: #ffffff; /* White, customize: e.g., #f8f9fa */
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 600px;
+        max-height: 90%;
+        overflow-y: auto;
+        position: relative;
+        border: 1px solid #cccccc; /* Default border, customize */
+    }
+    .greyhairs-nav ul {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        padding: 0;
+        margin: 20px 0;
+    }
+    .greyhairs-nav a {
+        color: #0000EE; /* Browser default blue, customize */
+        text-decoration: none;
+    }
+    .greyhairs-nav a:visited {
+        color: #551A8B; /* Browser default purple, customize */
+    }
+    .greyhairs-nav a:hover {
+        text-decoration: underline;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid #cccccc; /* Default gray border, customize */
+        border-radius: 3px;
+        font-size: 16px;
+    }
+    textarea {
+        height: 100px;
+    }
+    button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 3px;
+        background: #e0e0e0; /* Light gray, customize: e.g., #007bff */
+        color: #000000; /* Black text, customize */
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    button:hover {
+        background: #d0d0d0; /* Slightly darker gray, customize */
+    }
+    #greyhairs-add-expert-btn {
+        background: #e0e0e0; /* Match buttons, customize: e.g., #28a745 */
+    }
+    #greyhairs-close-modal {
+        background: none;
+        color: #000000;
+        font-size: 20px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .greyhairs-dropzone {
+        border: 2px dashed #cccccc; /* Gray dashed border, customize */
+        padding: 20px;
+        text-align: center;
+        margin: 10px 0;
+        background: #f9f9f9; /* Light gray background, customize */
+    }
+    .greyhairs-dropzone.dragover {
+        background: #e0e0e0; /* Gray on drag, customize */
+    }
+    .greyhairs-experts-preview {
+        margin: 20px 0;
+    }
+    .greyhairs-copied {
+        color: #008000; /* Green for Copied!, customize */
+    }
+    .greyhairs-tabs button {
+        margin-right: 10px;
+        padding: 8px 15px;
+    }
+    .greyhairs-tabs button.active {
+        background: #d0d0d0; /* Darker gray for active tab, customize */
+    }
+</style>
 
-    <main>
-        <!-- Experts/Cards Section - Loads by default -->
-        <section id="experts-section">
-            <h1>Meet Our Grey‑Hair Experts</h1>
-            <p>Seasoned executives and domain specialists who bring the judgment, networks, and context that make AI succeed in the real world.</p>
+<!-- Navigation (optional, remove if theme provides) -->
+<nav class="greyhairs-nav">
+    <ul>
+        <li><a href="https://corporateaisolutions.com">Home</a></li>
+        <li><a href="https://corporateaisolutions.com/about">About</a></li>
+        <li><a href="https://corporateaisolutions.com/join-us">Join Us</a></li>
+        <li><a href="https://corporateaisolutions.com/products">Products</a></li>
+        <li><a href="https://corporateaisolutions.com/offerings">Offerings</a></li>
+        <li><a href="https://corporateaisolutions.com/blog">Blog</a></li>
+        <li><a href="https://corporateaisolutions.com/contact">Contact</a></li>
+        <li><button style="background: #e0e0e0; color: #000000;">Get Started</button></li>
+    </ul>
+</nav>
 
-            <div class="experts-preview">
-                <h2>Local preview: 0 item(s)</h2>
-                <button>📦 Export All</button>
-                <button>🗑️ Clear Local</button>
+<main>
+    <section id="greyhairs-experts-section">
+        <h1>Meet Our Grey‑Hair Experts</h1>
+        <p>Seasoned executives and domain specialists who bring the judgment, networks, and context that make AI succeed in the real world.</p>
+
+        <div class="greyhairs-experts-preview">
+            <h2>Local preview: 0 item(s)</h2>
+            <button>📦 Export ALL (base + local)</button>
+            <button>🗑️ Clear Local</button>
+        </div>
+
+        <button id="greyhairs-add-expert-btn">+ Add Expert Profile</button>
+        <p>Want to join this network? Learn more and apply or email <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a>.</p>
+    </section>
+
+    <!-- Creation Modal -->
+    <div id="greyhairs-creation-modal" class="greyhairs-modal-overlay greyhairs-hidden" style="display: none;">
+        <div class="greyhairs-modal-content">
+            <button id="greyhairs-close-modal">✕ Close</button>
+            <h2>Create Expert Card</h2>
+
+            <div class="greyhairs-admin-section">
+                <label>Admin Unlock <input type="checkbox" id="greyhairs-admin-unlock"></label>
+                <label>Have Invite Code? <input type="text" placeholder="Enter code"></label>
             </div>
 
-            <button id="add-expert-btn">+ Add Expert Profile</button>
-            <p>Want to join this network? Learn more and apply or email <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a>.</p>
-        </section>
+            <button>Unlock</button>
+            <button>Continue</button>
 
-        <!-- Creation Modal - Hidden by default -->
-        <div id="creation-modal" class="modal-overlay hidden">
-            <div class="modal-content">
-                <button id="close-modal">✕ Close</button>
-                <h2>Create Expert Card</h2>
+            <div class="greyhairs-tabs">
+                <button class="active">Manual Entry</button>
+                <button>AI-Powered</button>
+            </div>
 
-                <div class="admin-section">
-                    <label>Admin Unlock <input type="checkbox" id="admin-unlock"></label>
-                    <label>Have Invite Code? <input type="text" placeholder="Enter code"></label>
+            <!-- Manual Entry -->
+            <div id="greyhairs-manual-entry">
+                <div class="greyhairs-dropzone" id="greyhairs-dropzone">
+                    Drag a LinkedIn profile link here (or paste below)
+                    <input type="url" id="greyhairs-linkedin-input" placeholder="Paste LinkedIn URL">
+                    <button id="greyhairs-prefill-btn">Prefill</button>
+                </div>
+                <p>We don’t scrape LinkedIn in the browser. This just seeds the form; you can edit.</p>
+
+                <div class="greyhairs-form">
+                    <label>Name <input type="text" id="greyhairs-name"></label>
+                    <label>Title <input type="text" id="greyhairs-title"></label>
+                    <label>Expertise (comma‑separated) <input type="text" id="greyhairs-expertise"></label>
+                    <label>Photo URL <input type="url" id="greyhairs-photo-url"></label>
+                    <label>LinkedIn URL <input type="url" id="greyhairs-linkedin"></label>
+                    <label>Email <input type="email" id="greyhairs-email"></label>
+                    <label>Short Bio <textarea id="greyhairs-bio"></textarea></label>
                 </div>
 
-                <button>Unlock</button>
-                <button>Continue</button>
+                <button id="greyhairs-add-card-btn">Add Card (Preview)</button>
+                <button id="greyhairs-copy-json-btn">Copy JSON</button>
+                <button id="greyhairs-download-json-btn">Download JSON</button>
+                <p id="greyhairs-copied" class="greyhairs-hidden greyhairs-copied">Copied! Paste this object into the experts array or your backend.</p>
+            </div>
 
-                <div class="ai-intro">
-                    <h3>🤖 AI-Powered Profile Creation</h3>
-                    <p>We'd love to automatically import from LinkedIn, but here's why we can't:</p>
-                    <ul>
-                        <li>LinkedIn's Terms of Service explicitly prohibit automated scraping or data extraction</li>
-                        <li>Their API approval process can take 3-6 months with strict limitations</li>
-                        <li>Browser security prevents safe API key usage in client-side code</li>
-                    </ul>
-                    <p>Good news: Our AI assistant will help you create a perfectly tailored expert profile in minutes! ✨</p>
-                </div>
-
-                <div class="creation-tabs">
-                    <button class="active">🤖 AI-Powered</button>
-                    <button>✏️ Manual Entry</button>
-                </div>
-
-                <!-- AI Profile Generator Tab -->
-                <div id="ai-generator">
-                    <h4>🤖 AI Profile Generator</h4>
-                    <p>Paste your LinkedIn profile content below, and our AI will create a tailored Corporate AI Solutions expert profile!</p>
-                    <textarea placeholder="Paste LinkedIn content, including profile photo URL if available (right-click photo > Copy image address)" rows="10"></textarea>
-                    <p>💡 How it works: Our AI analyzes your background and reformats it specifically for our corporate AI consulting network, emphasizing relevant experience and expertise.</p>
-                    <p>Tip: Go to your LinkedIn profile, select all the text (Ctrl+A / Cmd+A), and paste it here. The AI will extract what's relevant.</p>
-                    <button>✨ Generate AI Profile</button>
-                    <a href="https://www.linkedin.com" target="_blank">🔗 Open LinkedIn</a>
-                    <p id="generating" class="hidden">AI is crafting your profile...</p>
-
-                    <div id="generated-profile" class="hidden">
-                        <h4>✨ Your AI-Generated Profile</h4>
-                        <p>Review and edit the AI-generated content below:</p>
-                        <label>Name: <input type="text" id="name"></label>
-                        <label>Title: <input type="text" id="title"></label>
-                        <label>Expertise Areas: <input type="text" placeholder="Comma-separated list of key expertise areas"></label>
-                        <label>Corporate AI Solutions Bio: <textarea placeholder="AI-generated bio tailored for our corporate AI consulting network"></textarea></label>
-                        <label>LinkedIn URL: <input type="url" id="linkedin"></label>
-                        <label>Email: <input type="email" id="email"></label>
-
-                        <label>Profile Photo</label>
-                        <div class="photo-options">
-                            <button type="button" onclick="document.getElementById('photo-upload').click()">📁 Upload</button>
-                            <button type="button" id="generate-avatar" disabled>🎨 Generate (Coming Soon)</button>
-                            <button type="button" id="photo-url-btn">🔗 URL</button>
-                        </div>
-                        <input type="file" id="photo-upload" accept="image/jpeg,image/png,image/webp" style="display: none;">
-                        <input type="url" id="photo-url" placeholder="Paste image URL (e.g., from LinkedIn)" class="hidden">
-                        <div id="photo-preview" style="margin-top: 10px;"></div>
-
-                        <button id="preview-btn">👀 Preview Profile</button>
-                        <button>🔄 Regenerate</button>
-                        <button>✏️ Manual Edit</button>
-                    </div>
-                </div>
-
-                <!-- Manual Profile Creation Tab -->
-                <div id="manual-creation" class="hidden">
-                    <h4>✏️ Manual Profile Creation</h4>
-                    <p>Create your profile manually with full control:</p>
-                    <label>Name *: <input type="text" required></label>
-                    <label>Title *: <input type="text" required></label>
-                    <label>Expertise Areas: <input type="text" placeholder="Comma-separated list of expertise areas"></label>
-                    <label>Professional Bio: <textarea></textarea></label>
-                    <label>LinkedIn URL: <input type="url"></label>
-                    <label>Email: <input type="email"></label>
-
-                    <label>Profile Photo</label>
-                    <div class="photo-options">
-                        <button type="button" onclick="document.getElementById('manual-photo-upload').click()">📁 Upload</button>
-                        <button type="button" id="manual-generate-avatar" disabled>🎨 Generate (Coming Soon)</button>
-                        <button type="button" id="manual-photo-url-btn">🔗 URL</button>
-                    </div>
-                    <input type="file" id="manual-photo-upload" accept="image/jpeg,image/png,image/webp" style="display: none;">
-                    <input type="url" id="manual-photo-url" placeholder="Paste image URL (e.g., from LinkedIn)" class="hidden">
-                    <div id="manual-photo-preview" style="margin-top: 10px;"></div>
-
-                    <button>👀 Preview Profile</button>
-                    <button>📋 Copy JSON</button>
-                    <button>💾 Download</button>
-                </div>
-
-                <!-- Preview Modal -->
-                <div id="preview-section" class="hidden">
-                    <h4>📋 Preview Your Expert Card</h4>
-                    <button>✅ Add to Network</button>
-                    <button>✏️ Edit More</button>
-                    <button>📋 Copy JSON</button>
-                    <p id="copied-msg" class="hidden">Profile data copied to clipboard! This would be sent to the server in production.</p>
-                </div>
+            <!-- AI-Powered Entry -->
+            <div id="greyhairs-ai-entry" class="greyhairs-hidden">
+                <h4>🤖 AI Profile Generator</h4>
+                <p>Paste your LinkedIn profile content or URL below, and our AI will create a tailored expert profile!</p>
+                <textarea id="greyhairs-ai-input" placeholder="Paste LinkedIn content or URL (e.g., right-click profile photo for image URL)" rows="10"></textarea>
+                <p>💡 How it works: Our AI analyzes your background and reformats it for our corporate AI consulting network.</p>
+                <button id="greyhairs-ai-generate">✨ Generate AI Profile</button>
+                <a href="https://www.linkedin.com" target="_blank">🔗 Open LinkedIn</a>
+                <p id="greyhairs-generating" class="greyhairs-hidden">AI is crafting your profile...</p>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <footer>
-        <p>Corporate AI Solutions</p>
-        <p>Grey‑hair wisdom × modern AI engineering. Outcome‑driven automation with governance and adoption built‑in.</p>
-        <p>Contact: 📧 <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a> 📞 +61 402 612 471 🌐 <a href="https://corporateaisolutions.com/offerings">corporateaisolutions.com/offerings</a></p>
-        <p>© Corporate AI Solutions.</p>
-    </footer>
-
-    <script>
-        // Modal toggle
-        const addBtn = document.getElementById('add-expert-btn');
-        const modal = document.getElementById('creation-modal');
-        const closeBtn = document.getElementById('close-modal');
-        const generateBtn = document.querySelector('#ai-generator button');
-        const textarea = document.querySelector('#ai-generator textarea');
-        const generatedProfile = document.getElementById('generated-profile');
-        const generatingMsg = document.getElementById('generating');
-
-        addBtn.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-        });
-
-        closeBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.add('hidden');
-            }
-        });
-
-        // Tab switching
-        document.querySelectorAll('.creation-tabs button').forEach((btn, index) => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.creation-tabs button').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                document.querySelectorAll('#ai-generator, #manual-creation').forEach(el => el.classList.add('hidden'));
-                if (index === 0) {
-                    document.getElementById('ai-generator').classList.remove('hidden');
-                } else {
-                    document.getElementById('manual-creation').classList.remove('hidden');
-                }
-            });
-        });
-
-        // AI Profile Generation
-        generateBtn.addEventListener('click', async () => {
-            const content = textarea.value.trim();
-            if (!content) {
-                alert('Please paste your LinkedIn profile content.');
-                return;
-            }
-
-            generatingMsg.classList.remove('hidden');
-            try {
-                const response = await fetch('/api/generate-profile', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content }),
-                });
-
-                const data = await response.json();
-                generatingMsg.classList.add('hidden');
-
-                if (!response.ok || data.error) {
-                    alert(`Error: ${data.error || 'Failed to generate profile'}`);
-                    return;
-                }
-
-                const { profile } = data;
-                document.querySelector('#generated-profile #name').value = profile.name;
-                document.querySelector('#generated-profile #title').value = profile.title;
-                document.querySelector('#generated-profile input[placeholder*="expertise areas"]').value = profile.expertiseAreas;
-                document.querySelector('#generated-profile textarea').value = profile.bio;
-                document.querySelector('#generated-profile #linkedin').value = profile.linkedinUrl;
-                document.querySelector('#generated-profile #email').value = profile.email;
-                if (profile.photoUrl) {
-                    document.getElementById('photo-url').value = profile.photoUrl;
-                    document.getElementById('photo-preview').innerHTML = `<img src="${profile.photoUrl}" alt="Profile Photo" style="max-width: 200px; border-radius: 50%;" onerror="this.parentElement.innerHTML='Invalid image URL';">`;
-                }
-
-                generatedProfile.classList.remove('hidden');
-            } catch (error) {
-                generatingMsg.classList.add('hidden');
-                alert(`Error: ${error.message}`);
-            }
-        });
-
-        // Photo handling (AI section)
-        const photoUpload = document.getElementById('photo-upload');
-        const photoUrlInput = document.getElementById('photo-url');
-        const photoUrlBtn = document.getElementById('photo-url-btn');
-        const photoPreview = document.getElementById('photo-preview');
-
-        photoUpload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    photoPreview.innerHTML = `<img src="${ev.target.result}" alt="Profile Photo" style="max-width: 200px; border-radius: 50%;">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        photoUrlBtn.addEventListener('click', () => {
-            photoUrlInput.classList.toggle('hidden');
-        });
-
-        photoUrlInput.addEventListener('input', () => {
-            const url = photoUrlInput.value.trim();
-            if (url) {
-                if (url.match(/\.(jpg|jpeg|png|webp)$/i)) {
-                    photoPreview.innerHTML = `<img src="${url}" alt="Profile Photo" style="max-width: 200px; border-radius: 50%;" onerror="this.parentElement.innerHTML='Invalid image URL';">`;
-                } else {
-                    photoPreview.innerHTML = 'Please provide a valid image URL (jpg, png, webp)';
-                }
-            } else {
-                photoPreview.innerHTML = '';
-            }
-        });
-
-        // Photo handling (Manual section)
-        const manualPhotoUpload = document.getElementById('manual-photo-upload');
-        const manualPhotoUrlInput = document.getElementById('manual-photo-url');
-        const manualPhotoUrlBtn = document.getElementById('manual-photo-url-btn');
-        const manualPhotoPreview = document.getElementById('manual-photo-preview');
-
-        manualPhotoUpload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    manualPhotoPreview.innerHTML = `<img src="${ev.target.result}" alt="Profile Photo" style="max-width: 200px; border-radius: 50%;">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        manualPhotoUrlBtn.addEventListener('click', () => {
-            manualPhotoUrlInput.classList.toggle('hidden');
-        });
-
-        manualPhotoUrlInput.addEventListener('input', () => {
-            const url = manualPhotoUrlInput.value.trim();
-            if (url) {
-                if (url.match(/\.(jpg|jpeg|png|webp)$/i)) {
-                    manualPhotoPreview.innerHTML = `<img src="${url}" alt="Profile Photo" style="max-width: 200px; border-radius: 50%;" onerror="this.parentElement.innerHTML='Invalid image URL';">`;
-                } else {
-                    manualPhotoPreview.innerHTML = 'Please provide a valid image URL (jpg, png, webp)';
-                }
-            } else {
-                manualPhotoPreview.innerHTML = '';
-            }
-        });
-
-        // Placeholder for other buttons (Preview, Copy JSON, etc.)
-        document.getElementById('preview-btn').addEventListener('click', () => {
-            document.querySelectorAll('#ai-generator, #manual-creation').forEach(el => el.classList.add('hidden'));
-            document.getElementById('preview-section').classList.remove('hidden');
-        });
-    </script>
-</body>
-</html>
+<footer>
+    <p>Corporate AI Solutions</p>
+    <p>Grey‑hair wisdom × modern AI engineering. Outcome‑driven automation with governance and adoption built‑in.</p>
+    <p>Contact: 📧 <a href="mailto:dennis@corporateaisolutions.com">dennis@corporateaisolutions.com</a> 📞 +61 402 612 471 🌐 <a href="https://corporateaisolutions.com/offerings">corporateaisolutions.com/offerings</a></p>
+    <p>© Corporate AI Solutions.</p>
+</footer>
